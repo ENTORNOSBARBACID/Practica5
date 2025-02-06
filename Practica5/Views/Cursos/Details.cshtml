@@ -1,0 +1,91 @@
+﻿@model EjemploBBDDEF.Models.CicloDetailView
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="display-4">Details</h2>
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <table class="table table-bordered ">
+                <tr class="d-flex">
+                    <th class="col-3">CICLO</th>
+                    <td class="col-9">@Model.ciclo.Nombre</td>
+                </tr>
+                <tr class="d-flex">
+                    <th class="col-3">CURSOS</th>
+                    <td class="col-9">@Model.ciclo.Cursos</td>
+                </tr>
+
+            </table>
+            <br />
+            <table class="table table-bordered ">
+                <tr class="d-flex">
+                    <th class="col-2">CURSO</th>
+                    @foreach (var c in Model.Cursos)
+                    {
+                        <td class="col-5">@c.Curso</td>
+                    }
+                </tr>
+                <tr class="d-flex">
+                    <th class="col-2">AULA</th>
+
+                    @foreach (var c in Model.Cursos)
+                    {
+                        <td class="col-5">
+                            @c.Aula
+                        </td>
+                    }
+                </tr>
+
+            </table>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-6">
+            <table class="table table-bordered  table-striped ">
+
+                <tr>
+                    <th>
+                        CURSO
+                    </th>
+                    <th>
+                        DNI
+                    </th>
+                    <th>
+                        NOMBRE
+                    </th>
+
+
+
+                </tr>
+
+                @foreach (var item in Model.Alumnos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Curso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DNI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+
+
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
