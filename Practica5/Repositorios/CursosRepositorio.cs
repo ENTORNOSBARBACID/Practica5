@@ -16,5 +16,10 @@ namespace Practica5.Repositorios
         {
             return this._context.cursos.Where<Cursos>(c => c.Ciclo==s).ToList();
         }
+        public void createCurso(Cursos c)
+        {
+            this._context.cursos.Add(c);
+            this._context.SaveChanges();
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Practica5.Repositorios
     {
         private EscuelaContext _context;
 
-        public void RepositoryAlumnos(EscuelaContext context)
+        public AlumnoRepositorio(EscuelaContext context)
         {
             _context = context;
         }
@@ -16,7 +16,15 @@ namespace Practica5.Repositorios
         } 
         public List<Alumno> findAlumnos (string s)
         {
-            return this._context.alumno.Where<Alumno>(a => a.Ciclo == s).OrderBy(a => a.Curso).ToList();
+           List<Alumno> a=this._context.alumno.Where<Alumno>(a => a.Ciclo == s).ToList();
+            if(a.Count == 0)
+            {
+                
+                return null;
+            }
+            return a;
+               
+
         }
     }
 }

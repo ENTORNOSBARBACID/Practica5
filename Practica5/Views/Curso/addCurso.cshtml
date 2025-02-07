@@ -1,0 +1,17 @@
+﻿@model Practica5.Models.Ciclos;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-action="Aceptar">
+    <label>Ciclo</label>
+    <input type="text" name="Ciclo" value="@Model.Siglas" readonly/>
+    <label>Curso</label>
+    <input type="number" name="Curso" />
+    <label>Aula</label>
+    <input type="text" name="Aula" />
+    <label>Id</label>
+    <input type="number" name="Id" />
+    <button>Crear</button>
+</form>

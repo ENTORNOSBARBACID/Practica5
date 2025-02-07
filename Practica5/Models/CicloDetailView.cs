@@ -1,5 +1,5 @@
 ﻿using Practica5.Models;
-namespace EjemploBBDDEF.Models
+namespace Practica5.Models
 {
     public class CicloDetailView
     {

@@ -1,4 +1,4 @@
-﻿@model EjemploBBDDEF.Models.CicloDetailView
+﻿@model Practica5.Models.CicloDetailView
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +7,7 @@
 <h2 class="display-4">Details</h2>
 <br />
 <br />
-<div class="container">
+<div class="container" asp-controller="">
     <div class="row">
         <div class="col-5">
             <table class="table table-bordered ">
@@ -80,7 +80,7 @@
                     </tr>
                 }
             </table>
-
+            <a asp-action="addCurso" asp-route-siglas="@Model.ciclo.Siglas"><button>CREAR CURSO</button></a>
         </div>
     </div>
 </div>

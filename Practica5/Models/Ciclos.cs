@@ -6,6 +6,14 @@ namespace Practica5.Models
     [Table("Ciclos")]
     public class Ciclos
     {
+        public Ciclos(string codigo, string siglas, string nombre, int cursos)
+        {
+            Codigo = codigo;
+            Siglas = siglas;
+            Nombre = nombre;
+            Cursos = cursos;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("Codigo")]

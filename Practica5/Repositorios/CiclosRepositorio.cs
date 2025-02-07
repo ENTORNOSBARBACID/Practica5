@@ -21,6 +21,11 @@ namespace Practica5.Repositorios
         {
             return this._context.ciclos.FirstOrDefault<Ciclos>(c => c.Siglas == siglas);
         }
+        public void createCiclos(Ciclos c)
+        {
+            this._context.ciclos.Add(c);
+            this._context.SaveChanges();
+        }
 
     }
 }

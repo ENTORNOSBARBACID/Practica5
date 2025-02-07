@@ -20,5 +20,15 @@ namespace Practica5.Controllers
             list=this.data.getCiclos();
             return View(list);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public IActionResult Aceptar(string Codigo, string Siglas, string Nombre, int Cursos)
+        {
+            Ciclos ciclos = new Ciclos(Codigo, Siglas, Nombre, Cursos);
+            data.createCiclos(ciclos);
+            return RedirectToAction("index");
+        }
     }
 }
