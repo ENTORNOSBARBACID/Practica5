@@ -1,4 +1,6 @@
-﻿using Practica5.Models;
+﻿using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.EntityFrameworkCore;
+using Practica5.Models;
 using Practica5.tables;
 
 namespace Practica5.Repositorios
@@ -21,5 +23,18 @@ namespace Practica5.Repositorios
             this._context.cursos.Add(c);
             this._context.SaveChanges();
         }
+
+        public void deleteCurso(List<Cursos> c)
+        {
+            if (c is not null)
+            {
+                foreach (var i in c)
+                {
+                    this._context.cursos.Remove(i);
+                }
+                this._context.SaveChanges();
+            }
+        }
+
     }
 }

@@ -6,6 +6,20 @@ namespace Practica5.Models
     [Table("Alumno")]
     public class Alumno
     {
+        private string apellidos;
+
+        public Alumno(string DNI, string Nombre, string Apellido, int Telefono, int Edad, string Ciclo, int Curso, int id)
+        {
+            this.DNI = DNI;
+            this.Nombre = Nombre;
+            this.Apellido = Apellido;
+            this.Telefono = Telefono;
+            this.Edad = Edad;
+            this.Ciclo = Ciclo;
+            this.Curso = Curso;
+            this.id = id;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("DNI")]

@@ -5,5 +5,6 @@ namespace Practica5.Repositorios
     {
         public List<Cursos> findCurso(string s);
         public void createCurso(Cursos c);
+        public void deleteCurso(List<Cursos> c);
     }
 }

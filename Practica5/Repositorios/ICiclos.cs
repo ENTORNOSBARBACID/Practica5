@@ -6,6 +6,6 @@ namespace Practica5.Repositorios
         public List<Ciclos> getCiclos();
         public Ciclos findCiclo(string siglas);
         public void createCiclos(Ciclos c);
-
+        public void deleteCiclo(Ciclos c);
     }
 }

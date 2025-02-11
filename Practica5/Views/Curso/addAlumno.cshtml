@@ -1,0 +1,30 @@
+﻿@model Practica5.Models.Ciclos
+
+@{
+    ViewData["Title"] = "addAlumno";
+}
+
+<h1>addAlumno</h1>
+
+<h4>Alumno</h4>
+
+<form asp-action="add">
+    <label>DNI</label><br />
+    <input type="text" name="DNI" /><br />
+    <label>Nombre</label><br />
+    <input type="text" name="Nombre" /><br />
+    <label>Apellido</label><br />
+    <input type="text" name="Apellido" /><br />
+    <label>Telefono</label><br />
+    <input type="number" name="Telefono" /><br />
+    <label>Edad</label><br />
+    <input type="number" name="Edad" /><br />
+    <label>Ciclo</label><br />
+    <input type="text" name="Ciclo" value="@Model.Siglas" /><br />
+    <label>Curso</label><br />
+    <input type="number" name="Curso" /><br />
+    <label>ID</label><br />
+    <input type="number" name="id" /><br />
+
+    <button>Crear</button>
+</form>

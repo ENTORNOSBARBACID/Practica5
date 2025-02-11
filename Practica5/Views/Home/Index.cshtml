@@ -29,7 +29,7 @@
                     <td>@c.Codigo</td>
                     <td>
                         <a class="btn btn-success" asp-controller="Curso" asp-action="Details" asp-route-siglas="@c.Siglas"><i class="bi-eye-fill"></i></a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@c.Siglas"><i class="bi-trash-fill"></i></a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-siglas="@c.Siglas"><i class="bi-trash-fill"></i></a>
                         <a class="btn btn-warning" asp-controller="Alumnos" asp-action="Create" asp-route-siglas="@c.Siglas"><i class="bi-person-plus-fill"></i></a>
                         <a class="btn btn-info" asp-controller="Alumnos" asp-action="Index" asp-route-siglas="@c.Siglas"><i class="bi-people-fill"></i></a>
                     </td>

@@ -41,5 +41,15 @@ namespace Practica5.Controllers
             this.cursos.createCurso(c);
             return RedirectToAction("Index", "Home");
         }
+        public IActionResult addAlumno(string siglas) {
+            Ciclos ciclo = this.ciclos.findCiclo(siglas);
+            return View(ciclo);
+        }
+        public IActionResult add(string DNI, string Nombre, string Apellido, int Telefono, int Edad, string Ciclo, int Curso, int id)
+        {
+            Alumno al=new Alumno(DNI, Nombre, Apellido, Telefono, Edad, Ciclo, Curso, id);
+            this.alumnos.addAlumno(al);
+            return RedirectToAction("index", "Home");
+        }
     }
 }

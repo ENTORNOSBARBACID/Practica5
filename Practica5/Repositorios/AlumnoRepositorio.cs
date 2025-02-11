@@ -17,7 +17,7 @@ namespace Practica5.Repositorios
         public List<Alumno> findAlumnos (string s)
         {
            List<Alumno> a=this._context.alumno.Where<Alumno>(a => a.Ciclo == s).ToList();
-            if(a.Count == 0)
+            if(a is null)
             {
                 
                 return null;
@@ -25,6 +25,24 @@ namespace Practica5.Repositorios
             return a;
                
 
+        }
+
+        public void deleteAlumnos(List<Alumno> al)
+        {
+            if (al is not null)
+            {
+                foreach (var i in al)
+                {
+                    this._context.alumno.Remove(i);
+                }
+                this._context.SaveChanges();
+            }
+        }
+
+        public void addAlumno(Alumno al)
+        {
+            this._context.alumno.Add(al);
+            this._context.SaveChanges();
         }
     }
 }

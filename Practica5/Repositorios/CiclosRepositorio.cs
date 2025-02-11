@@ -27,5 +27,11 @@ namespace Practica5.Repositorios
             this._context.SaveChanges();
         }
 
+        public void deleteCiclo(Ciclos c)
+        {
+
+                this._context.ciclos.Remove(c);
+            this._context.SaveChanges();
+        }
     }
 }
