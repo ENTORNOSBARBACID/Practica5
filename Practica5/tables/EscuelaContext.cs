@@ -9,5 +9,6 @@ namespace Practica5.tables
         public DbSet<Ciclos> ciclos { get; set; }
         public DbSet<Cursos> cursos { get; set; }
         public DbSet<Alumno> alumno { get; set; }
+        public DbSet<Profesor> profesor { get; set; }
     }
 }

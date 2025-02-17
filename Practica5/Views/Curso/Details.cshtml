@@ -9,6 +9,7 @@
 <br />
 <div class="container" asp-controller="">
     <div class="row">
+        <h2>CICLOS</h2>
         <div class="col-5">
             <table class="table table-bordered ">
                 <tr class="d-flex">
@@ -22,6 +23,7 @@
 
             </table>
             <br />
+            <h2>CURSOS</h2>
             <table class="table table-bordered ">
                 <tr class="d-flex">
                     <th class="col-2">CURSO</th>
@@ -46,6 +48,7 @@
         </div>
         <div class="col-1"></div>
         <div class="col-6">
+            <h2>ALUMNOS</h2>
             <table class="table table-bordered  table-striped ">
 
                 <tr>
@@ -75,13 +78,50 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>
-
+                        <td><a asp-action="delete" asp-route-dni="@item.DNI">Borrar Alumno</a></td>
 
                     </tr>
                 }
             </table>
             <a asp-action="addCurso" asp-route-siglas="@Model.ciclo.Siglas"><button>CREAR CURSO</button></a>
             <a asp-action="addAlumno" asp-route-siglas="@Model.ciclo.Siglas"><button>AÑADIR ALUMNO</button></a>
+        </div>
+        <div class="col-6">
+            <h2>PROFESORES</h2>
+            <table class="table table-bordered  table-striped ">
+
+                <tr>
+                    <th>
+                        NOMBRE
+                    </th>
+                    <th>
+                        DNI
+                    </th>
+                    <th>
+                        EMAIL
+                    </th>
+
+
+
+                </tr>
+
+                @foreach (var item in Model.Profesores)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DNI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+
+
+                    </tr>
+                }
+            </table>
         </div>
     </div>
 </div>

@@ -1,0 +1,40 @@
+﻿@model IList<Ciclos>;
+@using Practica6.Helpers;
+
+@{
+    ViewData["Title"] = "Home Page";
+    string nombre = Context.Session.GetObject<Profesor>("profesor")?.Nombre;
+}
+<p>Hola de nuevo, @nombre</p>
+<div>
+    <h1 class="display-4">Ciclos Colegio Nuestra Señora del Pilar</h1>
+    <br /><br />
+    <h3><a asp-action="Create" class="link-secondary">Nuevo Ciclo</a></h3>
+    <br />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cursos</th>
+                <th>Siglas</th>
+                <th>Codigo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Ciclos c in Model)
+            {
+                <tr>
+                    <td>@c.Nombre</td>
+                    <td>@c.Cursos</td>
+                    <td>@c.Siglas</td>
+                    <td>@c.Codigo</td>
+                    <td>
+                        <a class="btn btn-success" asp-controller="Curso" asp-action="Details" asp-route-siglas="@c.Siglas"><i class="bi-eye-fill"></i></a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-siglas="@c.Siglas"><i class="bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-controller="Home" asp-action="Create"><button>CREAR CICLO</button></a>

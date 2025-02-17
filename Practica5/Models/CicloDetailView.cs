@@ -7,5 +7,6 @@ namespace Practica5.Models
         public List<Cursos> Cursos { get; set; }
 
         public List<Alumno> Alumnos { get; set; }
+        public List<Profesor> Profesores { get; set; }
     }
 }

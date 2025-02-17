@@ -12,11 +12,15 @@ builder.Services.AddDbContext<EscuelaContext>(
         options.UseSqlServer("name = SqlEscuela");
 
     });
-builder.Services.AddTransient<IAlumno, AlumnoRepositorio>();
-builder.Services.AddTransient<ICiclos, CiclosRepositorio>();
-builder.Services.AddTransient<ICursos, CursosRepositorio>();
+builder.Services.AddScoped<IAlumno, AlumnoRepositorio>();
+builder.Services.AddScoped<ICiclos, CiclosRepositorio>();
+builder.Services.AddScoped<ICursos, CursosRepositorio>();
+builder.Services.AddScoped<IProfesor, ProfesorRepositorio>();
 
-
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+});
 
 var app = builder.Build();
 
@@ -32,7 +36,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,4 +1,5 @@
-﻿using Practica5.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Practica5.Models;
 using Practica5.tables;
 
 namespace Practica5.Repositorios
@@ -12,9 +13,9 @@ namespace Practica5.Repositorios
         {
             _context = context;
         }
-        public List<Ciclos> getCiclos()
+        public async Task<List<Ciclos>> getCiclos()
         {
-            var x = this._context.ciclos.ToList();
+            var x = await this._context.ciclos.ToListAsync();
             return x;
         }
         public Ciclos findCiclo(string siglas)

@@ -1,5 +1,7 @@
 ﻿using Practica5.tables;
 using Practica5.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Practica5.Repositorios
 {
     public class AlumnoRepositorio:IAlumno
@@ -43,6 +45,17 @@ namespace Practica5.Repositorios
         {
             this._context.alumno.Add(al);
             this._context.SaveChanges();
+        }
+
+        public async Task<Alumno> findAlumno(string dni)
+        {
+            return await this._context.alumno.FirstOrDefaultAsync(i => i.DNI == dni);
+        }
+
+        public async Task deleteAlumno(Alumno al)
+        {
+            this._context.alumno.Remove(al);
+            await this._context.SaveChangesAsync();
         }
     }
 }

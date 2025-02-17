@@ -2,6 +2,11 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Practica5.Models;
 using Practica5.Repositorios;
+using Practica6.Helpers;
+using EjemploCifrado.Helper;
+using Humanizer.Bytes;
+using Practica6.Helpers;
+using System.Collections.Generic;
 
 namespace Practica5.Controllers
 {
@@ -10,29 +15,82 @@ namespace Practica5.Controllers
         private readonly ICiclos data;
         private readonly ICursos data2;
         private readonly IAlumno data3;
+        private readonly IProfesor data4;
 
-        public HomeController(ICiclos _Data, ICursos _Curso, IAlumno _Alumno)
+        public HomeController(ICiclos _Data, ICursos _Curso, IAlumno _Alumno, IProfesor _Profesor)
         {
             this.data = _Data;
             this.data2 = _Curso;
             this.data3 = _Alumno;
+            this.data4 = _Profesor;
+        }
+        public IActionResult Index() {
+            return View();
+         }
+
+        public async Task<IActionResult> Login(ProfesorLogin p) {
+            Profesor prof = await this.data4.GetProfesor(p.Email);
+            if (prof == null)
+            {
+                TempData["ErrorMessage"] = "No se ha encontrado ningún usuario con esos datos";
+                return RedirectToAction("Index");
+            }
+
+            //string salt = prof.Salt;
+            //byte[] encryptedPassword = Cifrado.EncryptPassword(p.Contraseña, salt);
+
+            //if (!Cifrado.CompareArrays(prof.Contraseña, encryptedPassword))
+            //{
+           //     TempData["ErrorMessage"] = "Las credenciales son erróneas";
+            //    return RedirectToAction("Index");
+           // }
+            HttpContext.Session.SetObject("profesor", prof);
+
+            return RedirectToAction("Home");
+        }
+        public async Task<IActionResult> Register()
+        {
+            List<Ciclos> c=await this.data.getCiclos();
+            return View(c);
         }
 
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<IActionResult> Register(RegistroProfesor p)
+        {
+            string Salt = Cifrado.GenerateSalt();
+            byte[] cifrada = Cifrado.EncryptPassword(p.Contraseña , Salt);
+
+            Profesor pro = new Profesor
+            {
+                Nombre=p.Nombre,
+                Apellido=p.Apellido,
+                DNI=p.DNI,
+                Ciclo=p.Ciclo,
+                Email=p.Email,
+                Contraseña=cifrada,
+                Salt=Salt,
+            };
+
+            await this.data4.Register(pro);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Home()
         {
             List<Ciclos> list = new List<Ciclos>();
-            list=this.data.getCiclos();
+            list=await this.data.getCiclos();
             return View(list);
         }
         public IActionResult Create()
         {
             return View();
         }
-        public IActionResult Aceptar(string Codigo, string Siglas, string Nombre, int Cursos)
+        public IActionResult Aceptar(int Codigo, string Siglas, string Nombre, int Cursos)
         {
             Ciclos ciclos = new Ciclos(Codigo, Siglas, Nombre, Cursos);
             data.createCiclos(ciclos);
-            return RedirectToAction("index");
+            return RedirectToAction("Home");
         }
         public IActionResult Delete(string siglas)
         {
@@ -44,7 +102,7 @@ namespace Practica5.Controllers
             this.data3.deleteAlumnos(al);
             this.data.deleteCiclo(c);
 
-            return RedirectToAction("index");
+            return RedirectToAction("Home");
         }
     }
 }

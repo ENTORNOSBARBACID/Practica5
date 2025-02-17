@@ -10,12 +10,14 @@ namespace Practica5.Controllers
         private readonly ICiclos ciclos;
         private readonly IAlumno alumnos;
         private readonly ICursos cursos;
+        private readonly IProfesor profesor;
 
-        public CursoController(ICiclos ciclos, IAlumno alumno, ICursos cursos)
+        public CursoController(ICiclos ciclos, IAlumno alumno, ICursos cursos, IProfesor profesor)
         {
             this.ciclos = ciclos;
             this.alumnos = alumno;
             this.cursos = cursos;
+            this.profesor = profesor;
         }
 
         public IActionResult Details(string siglas)
@@ -24,7 +26,8 @@ namespace Practica5.Controllers
             {
                 ciclo = this.ciclos.findCiclo(siglas),
                 Alumnos = this.alumnos.findAlumnos(siglas),
-                Cursos = this.cursos.findCurso(siglas)
+                Cursos = this.cursos.findCurso(siglas),
+                Profesores=this.profesor.findProfesor(siglas)
             };
 
             return View("Details", c);
@@ -39,7 +42,7 @@ namespace Practica5.Controllers
         {
             Cursos c = new Cursos(Ciclo, Curso, Aula, Id);
             this.cursos.createCurso(c);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Home", "Home");
         }
         public IActionResult addAlumno(string siglas) {
             Ciclos ciclo = this.ciclos.findCiclo(siglas);
@@ -49,7 +52,13 @@ namespace Practica5.Controllers
         {
             Alumno al=new Alumno(DNI, Nombre, Apellido, Telefono, Edad, Ciclo, Curso, id);
             this.alumnos.addAlumno(al);
-            return RedirectToAction("index", "Home");
+            return RedirectToAction("Home", "Home");
+        }
+        public async Task<IActionResult> delete(string dni)
+        {
+            Alumno al=await this.alumnos.findAlumno(dni);
+            await this.alumnos.deleteAlumno(al);
+            return RedirectToAction("Home", "Home");
         }
     }
 }

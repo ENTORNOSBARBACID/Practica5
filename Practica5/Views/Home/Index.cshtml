@@ -1,40 +1,26 @@
-﻿@model IList<Ciclos>
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    ViewData["Title"] = "Home Page";
 }
 
-<div>
-    <h1 class="display-4">Ejemplo Entity Framework</h1>
-    <br /><br />
-    <h3><a asp-action="Create" class="link-secondary">Nuevo Ciclo</a></h3>
+<form method="post" asp-action="Login">
+    <div class="form-group">
+        <label for="Email">Correo electrónico</label>
+        <input type="email" id="Email" name="Email" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Password">Contraseña</label>
+        <input type="password" id="Password" name="Password" class="form-control" required />
+    </div>
     <br />
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Cursos</th>
-                <th>Siglas</th>
-                <th>Codigo</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Ciclos c in Model)
-            {
-                <tr>
-                    <td>@c.Nombre</td>
-                    <td>@c.Cursos</td>
-                    <td>@c.Siglas</td>
-                    <td>@c.Codigo</td>
-                    <td>
-                        <a class="btn btn-success" asp-controller="Curso" asp-action="Details" asp-route-siglas="@c.Siglas"><i class="bi-eye-fill"></i></a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-siglas="@c.Siglas"><i class="bi-trash-fill"></i></a>
-                        <a class="btn btn-warning" asp-controller="Alumnos" asp-action="Create" asp-route-siglas="@c.Siglas"><i class="bi-person-plus-fill"></i></a>
-                        <a class="btn btn-info" asp-controller="Alumnos" asp-action="Index" asp-route-siglas="@c.Siglas"><i class="bi-people-fill"></i></a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <a asp-controller="Home" asp-action="Create"><button>CREAR CICLO</button></a>
+    <button type="submit" class="btn btn-success">Iniciar sesión</button>
+</form>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<a asp-action="Register">Registrarse</a>
