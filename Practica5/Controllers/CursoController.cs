@@ -60,5 +60,22 @@ namespace Practica5.Controllers
             await this.alumnos.deleteAlumno(al);
             return RedirectToAction("Home", "Home");
         }
+        public async Task<IActionResult> edit(string dni)
+        {
+            Alumno a = await this.alumnos.findAlumno(dni);
+            return View(a);
+        }
+        [HttpPost]
+        public async Task<IActionResult> edit(editAlumno ed)
+        {
+            Alumno a = await this.alumnos.findAlumno(ed.DNI);
+            a.Telefono = ed.Telefono;
+            a.Edad = ed.Edad;
+            a.Ciclo = ed.Ciclo;
+            a.Curso = ed.Curso;
+
+            await this.alumnos.editAlumno(a);
+            return RedirectToAction("Home", "Home");
+        }
     }
 }

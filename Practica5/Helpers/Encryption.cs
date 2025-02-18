@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace EjemploCifrado.Helper
+namespace Practica5.Helpers
 {
     public class Cifrado
     {

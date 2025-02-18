@@ -61,6 +61,12 @@
                     <th>
                         NOMBRE
                     </th>
+                    <th>
+                        EDAD
+                    </th>
+                    <th>
+                        TELEFONO
+                    </th>
 
 
 
@@ -77,8 +83,16 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Nombre)
+                             <td>
+                            @Html.DisplayFor(modelItem => item.Edad)
                         </td>
-                        <td><a asp-action="delete" asp-route-dni="@item.DNI">Borrar Alumno</a></td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        </td>
+                        <td><a asp-action="delete" asp-route-dni="@item.DNI">Borrar Alumno</a> |
+                            <a asp-action="edit" asp-route-dni="@item.DNI">Editar Alumno</a>
+                        </td>
 
                     </tr>
                 }

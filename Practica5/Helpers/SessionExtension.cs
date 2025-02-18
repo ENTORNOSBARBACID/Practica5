@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Practica6.Helpers
+namespace Practica5.Helpers
 {
     public static class SessionExtension
     {

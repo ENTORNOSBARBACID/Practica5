@@ -1,9 +1,9 @@
 ﻿@model IList<Ciclos>;
-@using Practica6.Helpers;
+@using Practica5.Helpers;
 
 @{
     ViewData["Title"] = "Home Page";
-    string nombre = Context.Session.GetObject<Profesor>("profesor")?.Nombre;
+    string? nombre = Context.Session.GetObject<Profesor>("profesor")?.Nombre;
 }
 <p>Hola de nuevo, @nombre</p>
 <div>

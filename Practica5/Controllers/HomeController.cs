@@ -2,10 +2,8 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Practica5.Models;
 using Practica5.Repositorios;
-using Practica6.Helpers;
-using EjemploCifrado.Helper;
+using Practica5.Helpers;
 using Humanizer.Bytes;
-using Practica6.Helpers;
 using System.Collections.Generic;
 
 namespace Practica5.Controllers
@@ -36,14 +34,13 @@ namespace Practica5.Controllers
                 return RedirectToAction("Index");
             }
 
-            //string salt = prof.Salt;
-            //byte[] encryptedPassword = Cifrado.EncryptPassword(p.Contraseña, salt);
+            //byte[] encryptedPassword = Cifrado.EncryptPassword(p.Contraseña, prof.Salt);
 
             //if (!Cifrado.CompareArrays(prof.Contraseña, encryptedPassword))
             //{
-           //     TempData["ErrorMessage"] = "Las credenciales son erróneas";
-            //    return RedirectToAction("Index");
-           // }
+            //    TempData["ErrorMessage"] = "Las credenciales son erróneas";
+             //   return RedirectToAction("Index");
+            //}
             HttpContext.Session.SetObject("profesor", prof);
 
             return RedirectToAction("Home");

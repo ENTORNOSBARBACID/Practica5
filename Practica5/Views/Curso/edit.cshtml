@@ -1,0 +1,24 @@
+﻿@using Practica5.Models;
+@model Alumno
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h4>Alumno</h4>
+
+<form asp-action="edit" method="post">
+    <label>DNI</label><br />
+    <input type="text" name="DNI" value="@Model.DNI" readonly="readonly"/><br />
+    <label>Telefono</label><br />
+    <input type="number" name="Telefono" /><br />
+    <label>Edad</label><br />
+    <input type="number" name="Edad" /><br />
+    <label>Ciclo</label><br />
+    <input type="text" name="Ciclo" value="@Model.Ciclo" /><br />
+    <label>Curso</label><br />
+    <input type="number" name="Curso" /><br />
+
+    <button>Crear</button>
+
+</form>

@@ -57,5 +57,11 @@ namespace Practica5.Repositorios
             this._context.alumno.Remove(al);
             await this._context.SaveChangesAsync();
         }
+
+        public async Task editAlumno(Alumno al)
+        {
+            this._context.alumno.Update(al);
+            await this._context.SaveChangesAsync();
+        }
     }
 }
